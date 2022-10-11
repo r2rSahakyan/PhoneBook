@@ -15,13 +15,14 @@ int main()
 	book.printList();
 	std::cout << '\n';
 	book.printValidations();
-	std::cout << "Do you want to sort?\n(Y/N)\n";
 	std::string answer;
+	PhoneBook::SortingOrder order;
+	PhoneBookNote::SortCriteria criteria;
+	std::cout << "Do you want to sort?\n(Y/N)\n";
 	std::cin >> answer;
 	if (answer == "n" || answer == "N")
 		return 0;
-	PhoneBook::SortingOrder order;
-	PhoneBookNote::SortCriteria criteria;
+	START_SORT:
 	std::cout << "What criteria do you want to be sorted by\nname,surname,phone\nor type exit to exit\n";
 	while(true)
 	{ 
@@ -67,5 +68,10 @@ int main()
 	}
 	book.sort(criteria, order);
 	book.printList();
+	std::cout << "Doyou want to sort Again?";
+	std::cin >> answer;
+	if (answer == "n" || answer == "N")
+		return 0;
+	goto START_SORT;
 	return 0;
 }
